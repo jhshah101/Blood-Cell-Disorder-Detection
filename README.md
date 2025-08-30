@@ -42,7 +42,7 @@ python -m uvicorn App.backend:app --reload --host 0.0.0.0 --port 8000
 
 If you don’t want to set up the backend/frontend and just need the **core model training and evaluation**, use the notebook:
 
-➡️ Open [`Software_code.ipynb`](Software_code.ipynb) in **Google Colab**.  
+➡️ Open (Software_code.ipynb) in **Google Colab**.  
 
 Steps inside Colab:
 1. Upload the dataset (or mount Google Drive).  
@@ -60,6 +60,6 @@ This way, the notebook works as a **standalone, reusable training pipeline** wit
 ---
 
 ## 🧑‍💻 Contributors
-👨‍🔬 [Your Name] – ML Engineer  
+👨‍🔬 [jamal] – ML Engineer  
 🎨 Lovable – Frontend  
 ⚡ FastAPI – Backend  
