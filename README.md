@@ -1,65 +1,197 @@
-# 🧬 Software Front and Back End White Blood Cells Classification
+# Hybrid CNN-Transformer with Efficient Channel Attention for White Blood Cell Classification
 
-An AI-powered system for **classifying white blood cells** 🩸  
+## Overview
 
-- ⚡ **PyTorch** – Deep learning backbone  
-- 🌐 **FastAPI** – Backend API for predictions  
-- 🎨 **Lovable** – Frontend UI  
-- 📊 **Dataset** – From Kaggle  
+This repository provides the PyTorch implementation of a **Hybrid CNN-Transformer framework integrated with Efficient Channel Attention (ECA)** for **White Blood Cell (WBC) classification** under class-imbalanced conditions.
 
----
+The proposed framework combines the local feature extraction capability of **ResNet18**, the global contextual representation of **Transformer Encoder**, and **Efficient Channel Attention (ECA)** to improve minority-class recognition without relying on image augmentation. Class imbalance is handled using **class-weighted Cross-Entropy Loss** computed from the training data.
 
-## 🚀 Features
-- 🔍 Detects and classifies multiple WBC types  
-- 📈 Handles **class imbalance** with dynamic weights  
-- 🛑 Early stopping with best-model saving  
-- 🖼️ Confusion matrix & training curves  
-- 🌍 Full-stack integration (Frontend + Backend)  
-- ☁️ **Reusable Notebook (`Software_code.ipynb`)** for **Google Colab**  
+The framework also supports **cross-dataset evaluation** to assess model robustness and generalization.
 
 ---
 
-## ⚙️ Setup Instructions
+## Features
 
-### 1️⃣ Clone the Repository
-```bash
-git clone https://github.com/your-username/white-blood-cells-classification.git
-cd white-blood-cells-classification
+- Hybrid CNN + Transformer architecture
+- Efficient Channel Attention (ECA)
+- No data augmentation
+- Class-weighted Cross-Entropy Loss
+- Cross-dataset evaluation
+- Macro-F1 score evaluation
+- Reproducible training pipeline
+- PyTorch implementation
+
+---
+
+## Model Architecture
+
+```
+Input Image
+      │
+      ▼
+ ResNet18 Backbone
+      │
+      ▼
+ Efficient Channel Attention (ECA)
+      │
+      ▼
+ Patch Token Generation
+      │
+      ▼
+ Transformer Encoder
+      │
+      ▼
+ Classification Head
+      │
+      ▼
+ White Blood Cell Prediction
 ```
 
-### 2️⃣ Run Backend (Optional – for API deployment)
-```bash
-cd backend
-pip install -r requirements.txt
+---
 
-# Run the backend
-python -m uvicorn App.backend:app --reload --host 0.0.0.0 --port 8000
+## Repository Structure
+
+```
+.
+├── WBC_Without.py          # Main training script
+├── README.md               # Documentation
+├── checkpoints/            # Saved models
+├── datasets/               # Dataset folders
+├── results/                # Experimental results
+└── requirements.txt
 ```
 
 ---
 
-## 📒 Reusable Code on Google Colab
+## Dataset Structure
 
-If you don’t want to set up the backend/frontend and just need the **core model training and evaluation**, use the notebook:
+The code uses the PyTorch `ImageFolder` format.
 
-➡️ Open (Software_code.ipynb) in **Google Colab**.  
+```
+Dataset/
 
-Steps inside Colab:
-1. Upload the dataset (or mount Google Drive).  
-2. Install required libraries (PyTorch, torchvision, scikit-learn, matplotlib).  
-3. Run cells step by step:
-   - **Data loading & preprocessing**  
-   - **Model definition (CNN + Transformer hybrid)**  
-   - **Weighted loss for imbalance**  
-   - **Training with early stopping**  
-   - **Evaluation: confusion matrix, accuracy, per-class report**  
-4. Save trained model (`best_model.pth`) for later use.  
+├── train/
+│   ├── Basophil/
+│   ├── Eosinophil/
+│   ├── Lymphocyte/
+│   ├── Monocyte/
+│   └── Neutrophil/
+│
+└── test/
+    ├── Basophil/
+    ├── Eosinophil/
+    ├── Lymphocyte/
+    ├── Monocyte/
+    └── Neutrophil/
+```
 
-This way, the notebook works as a **standalone, reusable training pipeline** without needing backend or frontend setup.  
+For cross-dataset evaluation, use one dataset for training and another independent dataset for testing.
 
 ---
 
-## 🧑‍💻 Contributors
-👨‍🔬 [jamal] – ML Engineer  
-🎨 Lovable – Frontend  
-⚡ FastAPI – Backend  
+## Requirements
+
+- Python 3.10+
+- PyTorch
+- Torchvision
+- NumPy
+
+Install dependencies:
+
+```bash
+pip install torch torchvision numpy
+```
+
+---
+
+## Training
+
+Edit the dataset paths in `WBC_Without.py`:
+
+```python
+TRAIN_DIR = "/path/to/train"
+TEST_DIR  = "/path/to/test"
+```
+
+Run:
+
+```bash
+python WBC_Without.py
+```
+
+---
+
+## Training Configuration
+
+| Parameter | Value |
+|-----------|-------|
+| Input Size | 224 × 224 |
+| Batch Size | 32 |
+| Epochs | 20 |
+| Optimizer | AdamW |
+| Learning Rate | 3e-4 |
+| Backbone | ResNet18 |
+| Attention Module | Efficient Channel Attention (ECA) |
+| Loss Function | Class-Weighted Cross-Entropy |
+| Evaluation Metric | Accuracy & Macro-F1 |
+
+---
+
+## Evaluation
+
+The implementation reports:
+
+- Classification Accuracy
+- Macro-F1 Score
+- Confusion Matrix
+
+The best model is selected according to **Macro-F1 Score**.
+
+---
+
+## Output
+
+The trained model is automatically saved as
+
+```
+wbc_eca_cnn_transformer.pth
+```
+
+---
+
+## Reproducibility
+
+Random seeds are fixed to improve reproducibility.
+
+```python
+set_seed(42)
+```
+
+---
+
+## Citation
+
+If you use this repository in your research, please cite the corresponding manuscript.
+
+```bibtex
+@article{Saeed2026,
+  title={A Hybrid ViT-ECA Framework with Adaptive Loss Reweighting for Minority White Blood Cell Classification},
+  author={Mutaz Elradi S. Saeed and co-authors},
+  journal={PLOS ONE},
+  year={2026},
+  note={Under Review}
+}
+```
+
+---
+
+## License
+
+This project is intended for academic and research purposes.
+
+---
+
+
+Nile Valley University, Atbara, Sudan
+
+For questions regarding the implementation, please open a GitHub Issue or contact the corresponding author.
