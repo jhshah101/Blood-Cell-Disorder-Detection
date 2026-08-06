@@ -191,11 +191,7 @@ This project is intended for academic and research purposes.
 
 ---
 
-## Contact
 
-**Mutaz Elradi S. Saeed**
-
-Nile Valley University, Atbara, Sudan
 
 For questions regarding the implementation, please open a GitHub Issue or contact the corresponding author.
 
