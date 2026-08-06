@@ -176,7 +176,7 @@ If you use this repository in your research, please cite the corresponding manus
 ```bibtex
 @article{Saeed2026,
   title={A Hybrid ViT-ECA Framework with Adaptive Loss Reweighting for Minority White Blood Cell Classification},
-  author={Mutaz Elradi S. Saeed and co-authors},
+  author={Fouzia Jabeen, Jamal Hussain Shah and co-authors},
   journal={PLOS ONE},
   year={2026},
   note={Under Review}
@@ -192,6 +192,6 @@ This project is intended for academic and research purposes.
 ---
 
 
-Nile Valley University, Atbara, Sudan
+COMSATS University Islamabad, Wah Campus
 
 For questions regarding the implementation, please open a GitHub Issue or contact the corresponding author.
