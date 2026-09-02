@@ -174,7 +174,7 @@ set_seed(42)
 If you use this repository in your research, please cite the corresponding manuscript.
 
 ```bibtex
-@article{Saeed2026,
+@article{Jamal2026,
   title={A Hybrid ViT-ECA Framework with Adaptive Loss Reweighting for Minority White Blood Cell Classification},
   author={Fouzia Jabeen, Jamal Hussain Shah and co-authors},
   journal={PLOS ONE},
