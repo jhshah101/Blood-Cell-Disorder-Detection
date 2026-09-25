@@ -1,0 +1,12 @@
+# CNN baseline under the common protocol (same split, input pipeline, optimiser, epochs).
+experiment: baseline_densenet121
+output_dir: runs
+model:
+  backbone: densenet121
+  pretrained: true
+loss:
+  name: ce
+train:
+  epochs: 20
+  optimizer: adam
+  lr: 1.0e-4

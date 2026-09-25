@@ -1,0 +1,71 @@
+# Proposed model: ViT-ECA-CF + Adaptive Loss Reweighting (augmentation-free).
+# Every value here is what the results files will report.  Override on the
+# command line with  --set section.key=value .
+experiment: vit_eca_cf_alr
+output_dir: runs
+notes: >
+  Hybrid ResNet-18 -> ECA(k=5, adaptive) -> colour-feature fusion (515-d tokens)
+  -> 12-layer / 12-head / 768-d pre-LN Transformer encoder -> linear head.
+  Model selection on the validation split (macro-F1); test evaluated once.
+
+data:
+  train_dir: data/Raabin-WBC/Train
+  test_dir: data/Raabin-WBC/TestA
+  split_file: splits/raabin_train_val.json
+  split_seed: 42
+  val_fraction: 0.15
+  group_file: null
+  img_size: 224
+  batch_size: 32
+  num_workers: 4
+  normalization: imagenet      # imagenet | per_image (manuscript Eq. 1) | none
+  augment: none                # augmentation-free protocol
+  sampler: shuffle             # shuffle | weighted
+  minority_classes: [Basophil, Eosinophil, Monocyte]
+
+model:
+  backbone: cnn_hybrid         # cnn_hybrid | vit_b16 | <torchvision CNN name>
+  pretrained: true
+  embed_dim: 768
+  depth: 12
+  num_heads: 12
+  mlp_ratio: 4.0
+  dropout: 0.1
+  drop_path: 0.1
+  use_eca: true
+  eca_gamma: 2
+  eca_b: 1
+  eca_k: null                  # null -> adaptive rule, k = 5 for 512 and 768 channels
+  use_color_features: true
+  color_dim: 3
+  color_bins: 8
+  color_spaces: [rgb, hsv, lab]
+  color_granularity: patch
+
+loss:
+  name: alr                    # ce | wce | focal | alr
+  alpha: 1.0                   # Eq. 13 exponent
+  focal_gamma: 2.0
+  alr_beta: 0.5                # Eq. 14, difficulty term
+  alr_gamma: 0.5               # Eq. 14, confidence term
+  alr_normalize: mean_one      # rescale to mean one after every update (required)
+  alr_w_min: 0.2
+  alr_w_max: 5.0
+  alr_momentum: 0.0
+  label_smoothing: 0.0
+
+train:
+  epochs: 20
+  optimizer: adam
+  lr: 1.0e-4
+  weight_decay: 0.0
+  scheduler: cosine
+  warmup_epochs: 1
+  grad_clip: 1.0
+  amp: true
+  seed: 0
+  deterministic: true
+  selection_metric: macro_f1   # on the VALIDATION split
+  early_stopping_patience: 0
+  device: auto
+  log_interval: 50

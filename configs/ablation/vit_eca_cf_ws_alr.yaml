@@ -1,0 +1,17 @@
+# Ablation row 7: ECA + CF + weighted sampling + Adaptive Loss Reweighting
+# (the combination named in the Table 8 narrative).  Keeping it separate from
+# row 6 makes the contribution of the sampler attributable.
+experiment: ablation_vit_eca_cf_ws_alr
+output_dir: runs
+data:
+  sampler: weighted
+model:
+  backbone: cnn_hybrid
+  use_eca: true
+  use_color_features: true
+loss:
+  name: alr
+  alpha: 1.0
+  alr_beta: 0.5
+  alr_gamma: 0.5
+  alr_normalize: mean_one

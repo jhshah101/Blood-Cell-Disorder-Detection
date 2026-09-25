@@ -1,0 +1,14 @@
+# Table 10 counterpart of the ResNet-50 baseline with the specified augmentation pipeline.
+experiment: baseline_resnet50_augmented
+output_dir: runs
+data:
+  augment: basic
+model:
+  backbone: resnet50
+  pretrained: true
+loss:
+  name: ce
+train:
+  epochs: 20
+  optimizer: adam
+  lr: 1.0e-4

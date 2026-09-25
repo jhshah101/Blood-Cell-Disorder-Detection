@@ -1,0 +1,11 @@
+# Ablation row 2: + ECA, + weighted random sampling; no colour features; cross-entropy.
+experiment: ablation_vit_eca_ws
+output_dir: runs
+data:
+  sampler: weighted
+model:
+  backbone: cnn_hybrid
+  use_eca: true
+  use_color_features: false
+loss:
+  name: ce

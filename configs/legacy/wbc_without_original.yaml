@@ -1,0 +1,31 @@
+# What the original WBC_Without.py trained (documented for the record):
+# ResNet-18 -> ECA with a HARD-CODED k = 3 -> 256-d / 4-layer / 8-head
+# transformer, static inverse-frequency weighted CE, AdamW 3e-4, wd 0.05,
+# cosine schedule, 20 epochs, no colour features.
+# The one behaviour that is NOT reproduced is test-set model selection:
+# the checkpoint is now chosen on the validation split.
+experiment: legacy_wbc_without
+output_dir: runs
+model:
+  backbone: cnn_hybrid
+  embed_dim: 256
+  depth: 4
+  num_heads: 8
+  mlp_ratio: 4.0
+  dropout: 0.1
+  drop_path: 0.0
+  use_eca: true
+  eca_k: 3
+  use_color_features: false
+loss:
+  name: wce
+  alpha: 1.0
+train:
+  epochs: 20
+  optimizer: adamw
+  lr: 3.0e-4
+  weight_decay: 0.05
+  scheduler: cosine
+  warmup_epochs: 0
+  grad_clip: 1.0
+  selection_metric: macro_f1

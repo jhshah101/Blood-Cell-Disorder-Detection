@@ -1,0 +1,13 @@
+# Table 10 counterpart of the proposed model with the fully specified
+# augmentation pipeline (training split only): horizontal flip p=0.5,
+# vertical flip p=0.5, rotation +/-15 degrees (bilinear, zero fill).
+experiment: vit_eca_cf_alr_augmented
+output_dir: runs
+data:
+  augment: basic
+model:
+  backbone: cnn_hybrid
+  use_eca: true
+  use_color_features: true
+loss:
+  name: alr

@@ -1,0 +1,9 @@
+# Ablation row 3: + ECA, + colour features; plain sampling; cross-entropy.
+experiment: ablation_vit_eca_cf
+output_dir: runs
+model:
+  backbone: cnn_hybrid
+  use_eca: true
+  use_color_features: true
+loss:
+  name: ce

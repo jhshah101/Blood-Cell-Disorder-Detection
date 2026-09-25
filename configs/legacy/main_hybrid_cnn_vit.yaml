@@ -1,0 +1,32 @@
+# What the original main.py trained (documented for the record):
+# ResNet-18 -> 1x1 projection to 256 -> nn.TransformerEncoder (4 layers,
+# 8 heads, FFN 512, post-LN), static weighted CE with weights normalised to
+# SUM one, AdamW 2e-4, wd 1e-4, up to 200 epochs, early stopping (patience 10)
+# on validation loss, no ECA, no colour features.
+# Not reproduced: the lazily created positional embedding that was never
+# registered with the optimiser (and therefore never trained).
+experiment: legacy_main_hybrid
+output_dir: runs
+model:
+  backbone: cnn_hybrid
+  embed_dim: 256
+  depth: 4
+  num_heads: 8
+  mlp_ratio: 2.0
+  dropout: 0.1
+  drop_path: 0.0
+  use_eca: false
+  use_color_features: false
+loss:
+  name: wce
+  alpha: 1.0
+train:
+  epochs: 200
+  optimizer: adamw
+  lr: 2.0e-4
+  weight_decay: 1.0e-4
+  scheduler: none
+  grad_clip: 0.0
+  amp: false
+  selection_metric: val_loss
+  early_stopping_patience: 10

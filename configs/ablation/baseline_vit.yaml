@@ -1,0 +1,14 @@
+# Ablation row 1: plain ViT-B/16 (ImageNet weights), no ECA, no colour features, cross-entropy.
+experiment: ablation_baseline_vit
+output_dir: runs
+model:
+  backbone: vit_b16
+  pretrained: true
+  use_eca: false
+  use_color_features: false
+loss:
+  name: ce
+train:
+  epochs: 20
+  optimizer: adam
+  lr: 1.0e-4

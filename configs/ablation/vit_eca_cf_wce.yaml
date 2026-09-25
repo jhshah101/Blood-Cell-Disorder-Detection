@@ -1,0 +1,10 @@
+# Ablation row 5: ECA + CF with static weighted cross-entropy (Eq. 13, weights fixed).
+experiment: ablation_vit_eca_cf_wce
+output_dir: runs
+model:
+  backbone: cnn_hybrid
+  use_eca: true
+  use_color_features: true
+loss:
+  name: wce
+  alpha: 1.0

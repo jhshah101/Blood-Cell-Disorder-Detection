@@ -1,0 +1,40 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite the associated manuscript."
+title: "Hybrid ViT-ECA-CF with Adaptive Loss Reweighting for Imbalanced White Blood Cell Classification"
+version: 1.0.0
+date-released: 2026-09-24
+authors:
+  - family-names: Jabeen
+    given-names: Fouzia
+    affiliation: "Department of Computer Science, COMSATS University Islamabad, Wah Campus, Pakistan"
+  - family-names: Shah
+    given-names: Jamal Hussain
+    affiliation: "Department of Computer Science, COMSATS University Islamabad, Wah Campus, Pakistan"
+  - family-names: Afzal
+    given-names: Maira
+    affiliation: "Department of Computer Science, COMSATS University Islamabad, Wah Campus, Pakistan"
+  - family-names: Awais
+    given-names: Muhammad
+    affiliation: "Department of Computer Science, College of Computer, Qassim University, Saudi Arabia"
+repository-code: "https://github.com/jhshah101/Blood-Cell-Disorder-Detection"
+keywords:
+  - white blood cell classification
+  - class imbalance
+  - vision transformer
+  - efficient channel attention
+  - adaptive loss reweighting
+preferred-citation:
+  type: article
+  title: "A Hybrid ViT-ECA-CF Framework with Adaptive Loss Reweighting for Imbalanced White Blood Cell Classification"
+  authors:
+    - family-names: Jabeen
+      given-names: Fouzia
+    - family-names: Shah
+      given-names: Jamal Hussain
+    - family-names: Afzal
+      given-names: Maira
+    - family-names: Awais
+      given-names: Muhammad
+  journal: "Bioengineering"
+  year: 2026
+  notes: "Under review"

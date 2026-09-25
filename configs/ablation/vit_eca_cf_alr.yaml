@@ -1,0 +1,13 @@
+# Ablation row 6 (proposed): ECA + CF with Adaptive Loss Reweighting, plain sampling.
+experiment: ablation_vit_eca_cf_alr
+output_dir: runs
+model:
+  backbone: cnn_hybrid
+  use_eca: true
+  use_color_features: true
+loss:
+  name: alr
+  alpha: 1.0
+  alr_beta: 0.5
+  alr_gamma: 0.5
+  alr_normalize: mean_one

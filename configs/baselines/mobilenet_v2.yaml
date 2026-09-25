@@ -1,0 +1,12 @@
+# CNN baseline under the common protocol (same split, input pipeline, optimiser, epochs).
+experiment: baseline_mobilenet_v2
+output_dir: runs
+model:
+  backbone: mobilenet_v2
+  pretrained: true
+loss:
+  name: ce
+train:
+  epochs: 20
+  optimizer: adam
+  lr: 1.0e-4

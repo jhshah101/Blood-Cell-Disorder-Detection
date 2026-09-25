@@ -1,0 +1,11 @@
+# Ablation row 4: ECA + CF with focal loss (gamma = 2, inverse-frequency alpha weights).
+experiment: ablation_vit_eca_cf_focal
+output_dir: runs
+model:
+  backbone: cnn_hybrid
+  use_eca: true
+  use_color_features: true
+loss:
+  name: focal
+  focal_gamma: 2.0
+  alpha: 1.0

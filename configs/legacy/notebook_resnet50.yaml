@@ -1,0 +1,24 @@
+# What Software_code.ipynb trained (documented for the record):
+# torchvision ResNet-50 (ImageNet weights), Adam 1e-4, up to 200 epochs with
+# early stopping (patience 10) on validation loss, ToTensor only (no channel
+# normalisation), weighted CE.  The notebook re-estimated the class weights
+# after every mini-batch from the labels seen so far in the epoch; that
+# non-standard behaviour is replaced by static weights from the training split.
+experiment: legacy_notebook_resnet50
+output_dir: runs
+data:
+  normalization: none
+model:
+  backbone: resnet50
+  pretrained: true
+loss:
+  name: wce
+train:
+  epochs: 200
+  optimizer: adam
+  lr: 1.0e-4
+  scheduler: none
+  grad_clip: 0.0
+  amp: false
+  selection_metric: val_loss
+  early_stopping_patience: 10

@@ -1,0 +1,26 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+build/
+dist/
+
+# Experiments (commit splits/, never the data or the checkpoints)
+runs/
+runs_synth/
+data/
+*.pt
+*.pth
+benchmark.json
+gradcam/
+
+# Frontend
+Software/Frontend/node_modules/
+Software/Frontend/dist/
+
+# Editors / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
